@@ -12,7 +12,7 @@ client.on('ready', () => {
   });
 
   client.on("guildMemberAdd", function(member) {
-      member.guild.channels.find("name", "powitalnia").send(member.toString() + " Siemka hakerze :wink:");
+      member.guild.channels.find("name", "powitalnia").send(member.toString() + ", Witamy na Haker.Edu.PL! Miłego dnia  :wink: !");
     });
 
   client.on("guildMemberAdd", member => {
