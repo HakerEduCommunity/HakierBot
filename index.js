@@ -32,18 +32,22 @@ client.on('message', async (message) => {
     await message.channel.send(new Date().getTime() - message.createdTimestamp + " ms");
   }
 
-  if(command === "kick") {
-    if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("sorry, you don't have permission to kick members.");
-    if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("it seems I do not have permission to perform this action. Does my role have the kick membes permission?");
+  if (command === "kick") {
+    if (!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("sorry, you don't have permission to kick members.");
+    if (!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("it seems I do not have permission to perform this action. Does my role have the kick membes permission?");
     let userToKick = message.mentions.users.first();
 
-    if( message.mentions.users.size < 1) return message.reply("you did not provide a user to kick. Aborting operation.");
-    if(!message.guild.member(userToKick)
-    .kickable) return message.reply("that user has a role above my highest role.")
+    if (message.mentions.users.size < 1) return message.reply("you did not provide a user to kick. Aborting operation.");
+    if (!message.guild.member(userToKick)
+      .kickable) return message.reply("that user has a role above my highest role.")
 
     await member.kick(reason)
-          .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-        message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
+      .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
+    message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
+  }
+
+  if (command === 'ban') {
+
   }
 });
 
