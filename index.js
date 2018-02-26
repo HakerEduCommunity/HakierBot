@@ -45,10 +45,6 @@ client.on('message', async (message) => {
       .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
     message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
   }
-
-  if (command === 'ban') {
-
-  }
 });
 
 client.login(token)
