@@ -30,6 +30,9 @@ client.on('ready', () => {
   
     if (message.content.indexOf(config.prefix) !== 0) return
 
+    if(command === 'ping') {
+        await message.channel.send(new Date().getTime() - message.createdTimestamp + " ms");        
+      }
 
     })
 
