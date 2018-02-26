@@ -3,15 +3,26 @@ const client = new Discord.Client()
 // Please replace with your own token :D
 const token = require('./token.js')
 const config = {
-    prefix: 'smroot '
+    prefix: '!'
   }
-
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity('Hakuje Pentagon')
   });
-    
+
+  client.on("guildMemberAdd", function(member) {
+      member.guild.channels.find("name", "powitalnia").send(member.toString() + " Siemka hakerze :wink:");
+    });
+
+  client.on("guildMemberAdd", member => {
+    console.log('Użytkownik' + " " + member.username + ' has joined the server!')
+
+    var role = member.guild.roles.find('name', 'Użytkownik');
+
+    member.addRole(role)
+  });
+
   client.on('message', async (message) => {
     const command = message.content.slice(config.prefix.length)
   
@@ -19,8 +30,7 @@ client.on('ready', () => {
   
     if (message.content.indexOf(config.prefix) !== 0) return
 
-    
-  
-  })
+
+    })
 
     client.login(token)
