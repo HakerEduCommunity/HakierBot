@@ -1,50 +1,66 @@
 const Discord = require('discord.js')
-const client = new Discord.Client()
+const bot = new Discord.Client({ disableEveryone: true });
 // Please replace with your own token :D
 const token = require('./token.js')
-const config = {
-  prefix: '!'
-}
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity('Hakuje Pentagon')
+const fs = require('fs')
+const ban = require('./commands/ban.js')
+const kick = require('./commands/kick.js')
+const config = require('./config.json')
+bot.on('ready', () => {
+  console.log(`Logged in as ${bot.user.tag}!`);
+  bot.user.setActivity('Hakuje Pentagon')
 });
 
-client.on("guildMemberAdd", function (member) {
+bot.on("guildMemberAdd", function (member) {
   member.guild.channels.find("name", "powitalnia").send(member.toString() + ", Witamy na HakerEduPL! Miłego dnia  :wink: !");
 });
 
-client.on("guildMemberAdd", member => {
+bot.on("guildMemberAdd", member => {
   var role = member.guild.roles.find('name', 'Użytkownik');
 
   member.addRole(role)
 });
 
-client.on('message', async (message) => {
-  const command = message.content.slice(config.prefix.length)
+// Command handler
+bot.commands = new Discord.Collection();
 
-  if (message.author.bot) return
+fs.readdir('./commands/', (err, files) => {
+  if (err) console.error(err);
 
-  if (message.content.indexOf(config.prefix) !== 0) return
-
-  if (command === 'ping') {
-    await message.channel.send(new Date().getTime() - message.createdTimestamp + " ms");
+  let jsfiles = files.filter(f => f.split('.').pop() === 'js');
+  if (jsfiles.lenght <= 0) {
+    console.log('No command files found...')
+    return;
   }
 
-  if (command === "kick") {
-    if (!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("sorry, you don't have permission to kick members.");
-    if (!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("it seems I do not have permission to perform this action. Does my role have the kick membes permission?");
-    let userToKick = message.mentions.users.first();
+  console.log(`Loading ${jsfiles.length} commands...`);
 
-    if (message.mentions.users.size < 1) return message.reply("you did not provide a user to kick. Aborting operation.");
-    if (!message.guild.member(userToKick)
-      .kickable) return message.reply("that user has a role above my highest role.")
-
-    await member.kick(reason)
-      .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-    message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
-  }
+  jsfiles.forEach((f, i) => {
+    let props = require(`./commands/${f}`);
+    console.log(`${i + 1}: ${f} loaded!`);
+    bot.commands.set(props.help.name, props);
+  });
 });
 
-client.login(token)
+bot.on('message', async (message) => {
+
+  let prefix = config.prefix;
+
+  if (message.author.bot) return;
+
+  if (message.channel.type === "dm") {
+    message.reply(":warning: Nie możesz używać komend w prywatnych wiadomościach!")
+    return;
+  }
+
+  let messageArray = message.content.split(/\s+/g);
+  let command = messageArray[0];
+  let args = messageArray.slice(1);
+  let cmd = bot.commands.get(command.slice(prefix.length));
+  if (command.startsWith(config.prefix)) {
+    if (cmd) cmd.run(bot, message, args);
+    if (!cmd) return message.channel.send(`:warning:  Error 404, komendy nie znaleziono! :warning:`);
+  }
+
+})
+bot.login(token)
