@@ -140,7 +140,7 @@ bot.on('message', async (message) => {
     var role = message.guild.roles.find(r => r.name === `php`);
     var giveRoleTo = message.guild.member(message.author);
     if (giveRoleTo.roles.has(role.id)) {
-      giveRoleTo.removeRole(role.id).then(message.channel.send("Straciłeś role *php**!"));
+      giveRoleTo.removeRole(role.id).then(message.channel.send("Straciłeś role **php**!"));
     } else {
       giveRoleTo.addRole(role.id)
         .then(message.channel.send("Dostałeś role **php**!"))
