@@ -1,0 +1,28 @@
+{
+  "name": "hakierbot",
+  "version": "0.7.0",
+  "description": "Bot specjalnie przygotowany pod serwer HakerEduPL przez HakerEduCommunity!",
+  "main": "./src/index.js",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "nodemon": "^1.17.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "eslint --fix --ext .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HakerEduCommunity/HakerBot.git"
+  },
+  "author": "HakerEdu Community",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HakerEduCommunity/HakerBot/issues"
+  },
+  "homepage": "https://github.com/HakerEduCommunity/HakerBot#readme"
+}
