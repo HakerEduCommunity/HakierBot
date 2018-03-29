@@ -9,16 +9,14 @@ module.exports.run = async (bot, message, args) => {
     }
 
     if (args.length >= 2) {
-      const toBan = message.mentions.members.first() || message.guild.members.get(args[0])
+      const toBan = message.mentions.members.first() || message.guild.members.get(args[2])
 
       if (!toBan) return message.channel.send(':warning: You did not specify a valid user mention or ID!')
-
-      const reason = args.slice(1)
+      const reason = args.slice(3)
 
       if (!toBan.user.bot) {
         await toBan.user.send(`**You have been banned from ${message.guild.name}. Reason: ${reason.join(' ')}**`)
       }
-      const emoji = message.guild.emojis.find('name', 'banhammer')
       const embed = new Discord.RichEmbed()
         .setAuthor(`${toBan.user.username}#${toBan.user.discriminator} was banned`, toBan.user.displayAvatarURL)
         .setDescription(`**Banned by**: ${message.author}\n**Reason**: ${reason.join(' ')}`)
