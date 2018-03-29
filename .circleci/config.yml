@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/hakierbot
     docker:
-      - image: circleci/node:9.10.0
+      - image: circleci/node:8.2.0
     steps:
       - checkout
       - run:
