@@ -1,13 +1,11 @@
 const Discord = require('discord.js')
 const fs = require('fs')
-const ban = require('./commands/ban.js')
-const kick = require('./commands/kick.js')
 const config = require('./config')
 
 const bot = new Discord.Client({ disableEveryone: true })
 
 bot.on('ready', () => {
-  console.log(`Initialized on ${new Date().toUTCString()}.`)
+  console.log(`\nInitialized on ${new Date().toUTCString()}.`)
   bot.user.setPresence({ game: { name: 'Mr. Robot', type: 3 } })
 })
 
@@ -19,36 +17,36 @@ bot.on('guildMemberAdd', async (member) => {
   member.send('**Koniecznie zapoznaj się z naszym regulaminem na kanale #regulamin i zajrzyj na social media. Życzymy miłego pobytu! :wink:**')
 })
 
-// Command handler
+// commands handler
 bot.commands = new Discord.Collection()
 
 fs.readdir('./src/commands/', (err, files) => {
   if (err) console.error(err)
 
-  let jsfiles = files.filter(f => f.split('.').pop() === 'js')
+  const jsfiles = files.filter(f => f.split('.').pop() === 'js')
   if (jsfiles.lenght <= 0) {
-    console.log('No command files found...')
+    console.log('No commands files found...')
     return
   }
 
-  console.log(`Loading ${jsfiles.length} commands...`)
+  console.log(`Loading ${jsfiles.length} commands... \n`)
 
-  jsfiles.forEach((f, i) => {
-    let props = require(`./commands/${f}`)
-    console.log(`${i + 1}: ${f} loaded!`)
+  jsfiles.forEach((f) => {
+    /* eslint-disable */
+    const props = require(`./commands/${f}`)
+    /* eslint-enable */
+    console.log(`${f} loaded!`)
     bot.commands.set(props.help.name, props)
   })
 })
 
 bot.on('message', async (message) => {
   const command = message.content.slice(config.prefix.length)
-  let prefix = config.prefix
 
   if (message.author.bot) return
-
-  if (command === `c++`) {
-    var role = message.guild.roles.find(r => r.name === `c++`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'c++') {
+    const role = message.guild.roles.find(r => r.name === 'c++')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **c++**!'))
     } else {
@@ -58,9 +56,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `js`) {
-    var role = message.guild.roles.find(r => r.name === `js`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'js') {
+    const role = message.guild.roles.find(r => r.name === 'js')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **js**!'))
     } else {
@@ -70,9 +68,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `python`) {
-    var role = message.guild.roles.find(r => r.name === `python`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'python') {
+    const role = message.guild.roles.find(r => r.name === 'python')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **python**!'))
     } else {
@@ -82,9 +80,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `c#`) {
-    var role = message.guild.roles.find(r => r.name === `c#`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'c#') {
+    const role = message.guild.roles.find(r => r.name === 'c#')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **c#**!'))
     } else {
@@ -94,9 +92,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `lua`) {
-    var role = message.guild.roles.find(r => r.name === `lua`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'lua') {
+    const role = message.guild.roles.find(r => r.name === 'lua')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **lua**!'))
     } else {
@@ -106,9 +104,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `html`) {
-    var role = message.guild.roles.find(r => r.name === `html/css`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'html') {
+    const role = message.guild.roles.find(r => r.name === 'html/css')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **html/css**!'))
     } else {
@@ -118,9 +116,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `java`) {
-    var role = message.guild.roles.find(r => r.name === `java`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'java') {
+    const role = message.guild.roles.find(r => r.name === 'java')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **java**!'))
     } else {
@@ -130,9 +128,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `php`) {
-    var role = message.guild.roles.find(r => r.name === `php`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'php') {
+    const role = message.guild.roles.find(r => r.name === 'php')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **php**!'))
     } else {
@@ -142,9 +140,9 @@ bot.on('message', async (message) => {
     }
   }
 
-  if (command === `swift`) {
-    var role = message.guild.roles.find(r => r.name === `swift`)
-    var giveRoleTo = message.guild.member(message.author)
+  if (command === 'swift') {
+    const role = message.guild.roles.find(r => r.name === 'swift')
+    const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
       giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **swfit**!'))
     } else {
@@ -159,13 +157,12 @@ bot.on('message', async (message) => {
     return
   }
 
-  let messageArray = message.content.split(/\s+/g)
-  let args = messageArray.slice(1)
-  let cmd = bot.commands.get(command.slice(prefix.length))
-  if (command.startsWith(config.prefix)) {
-    if (cmd) cmd.run(bot, message, args)
-    if (!cmd) return message.channel.send(`:warning:  Error 404, komendy nie znaleziono! :warning:`)
-  }
+  const args = message.content.split(/\s+/g)
+  const cmd = bot.commands.get(args[1])
 
+  if (message.content.startsWith(config.prefix)) {
+    if (cmd) cmd.run(bot, message, args)
+    if (!cmd) return message.channel.send(':warning:  Error 404, komendy nie znaleziono! :warning:')
+  }
 })
 bot.login(config.token)
