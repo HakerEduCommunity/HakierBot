@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(':warning: You have no permission to ban members!')
 
     if (args.length < 2) {
-      return message.channel.send('**[Admin Mode]** Too few arguments! Type cody_help ban to get usage of this command.')
+      return message.channel.send('**[Admin Mode]** Too few arguments! Type !help ban to get usage of this command.')
     }
 
     if (args.length >= 2) {
@@ -18,8 +18,7 @@ module.exports.run = async (bot, message, args) => {
       if (!toBan.user.bot) {
         await toBan.user.send(`**You have been banned from ${message.guild.name}. Reason: ${reason.join(' ')}**`)
       }
-
-      const banhammer = bot.emojis.get
+      const emoji = message.guild.emojis.find('name', 'banhammer')
       const embed = new Discord.RichEmbed()
         .setAuthor(`${toBan.user.username}#${toBan.user.discriminator} was banned`, toBan.user.displayAvatarURL)
         .setDescription(`**Banned by**: ${message.author}\n**Reason**: ${reason.join(' ')}`)
