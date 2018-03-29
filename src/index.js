@@ -13,8 +13,8 @@ bot.on('guildMemberAdd', async (member) => {
   const role = member.guild.roles.find('name', 'Użytkownik')
 
   await member.addRole(role)
-  member.send('**Witaj na serwerze Haker.edu.pl!**')
-  member.send('**Koniecznie zapoznaj się z naszym regulaminem na kanale #regulamin i zajrzyj na social media. Życzymy miłego pobytu! :wink:**')
+  member.send(`**Witaj na serwerze Haker.edu.pl!**
+**Koniecznie zapoznaj się z naszym regulaminem na kanale #regulamin i zajrzyj na social media. Życzymy miłego pobytu! :wink:**`)
 })
 
 // commands handler
