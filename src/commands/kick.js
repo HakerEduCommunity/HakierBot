@@ -9,11 +9,10 @@ module.exports.run = async (bot, message, args) => {
     }
 
     if (args.length >= 2) {
-      const toKick = message.mentions.members.first() || message.guild.members.get(args[0])
+      const toKick = message.mentions.members.first() || message.guild.members.get(args[2])
 
       if (!toKick) return message.channel.send(':warning: You did not specify a valid user mention or ID!')
-
-      const reason = args.slice(1)
+      const reason = args.slice(3)
 
       if (!toKick.user.bot) {
         await toKick.user.send(`**You have been kicked from ${message.guild.name}. Reason: ${reason.join(' ')}**`)
