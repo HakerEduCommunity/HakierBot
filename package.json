@@ -4,6 +4,7 @@
   "description": "Bot specjalnie przygotowany pod serwer HakerEduPL przez HakerEduCommunity!",
   "main": "./src/index.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "discord.js": "^11.3.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",

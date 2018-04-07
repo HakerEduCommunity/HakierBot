@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const fs = require('fs')
 const config = require('./config')
+const crypto = require('./commands/crypto')
 
 const bot = new Discord.Client({ disableEveryone: true })
 
@@ -36,7 +37,7 @@ fs.readdir('./src/commands/', (err, files) => {
     const props = require(`./commands/${f}`)
     /* eslint-enable */
     console.log(`${f} loaded!`)
-    bot.commands.set(props.help.name, props)
+    
   })
 })
 
@@ -152,10 +153,21 @@ bot.on('message', async (message) => {
     }
   }
 
+  if (command === 'btc') {
+    crypto.btc(message)
+    return
+  }
+
+  if (command === 'eth') {
+    crypto.eth(message)
+    return
+  }
+
   if (message.channel.type === 'dm') {
     message.reply(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
     return
   }
+
 
   const args = message.content.split(/\s+/g)
   const cmd = bot.commands.get(args[1])
