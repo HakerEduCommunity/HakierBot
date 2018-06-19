@@ -57,13 +57,13 @@ bot.on('message', async (message) => {
   }
 
   if (command === 'js') {
-    const role = message.guild.roles.find(r => r.name === 'js')
+    const role = message.guild.roles.find(r => r.name === 'javascript')
     const giveRoleTo = message.guild.member(message.author)
     if (giveRoleTo.roles.has(role.id)) {
-      giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **js**!'))
+      giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **javascript**!'))
     } else {
       giveRoleTo.addRole(role.id)
-        .then(message.channel.send('Dostałeś role **js**!'))
+        .then(message.channel.send('Dostałeś role **javascript**!'))
         .catch(console.error)
     }
   }
@@ -151,6 +151,31 @@ bot.on('message', async (message) => {
         .catch(console.error)
     }
   }
+
+  if (command === 'golang') {
+    const role = message.guild.roles.find(r => r.name === 'golang')
+    const giveRoleTo = message.guild.member(message.author)
+    if (giveRoleTo.roles.has(role.id)) {
+      giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **golang**!'))
+    } else {
+      giveRoleTo.addRole(role.id)
+        .then(message.channel.send('Dostałeś role **golang**!'))
+        .catch(console.error)
+    }
+  }
+  
+  if (command === 'visual-basic') {
+    const role = message.guild.roles.find(r => r.name === 'visual-basic')
+    const giveRoleTo = message.guild.member(message.author)
+    if (giveRoleTo.roles.has(role.id)) {
+      giveRoleTo.removeRole(role.id).then(message.channel.send('Straciłeś role **visual-basic**!'))
+    } else {
+      giveRoleTo.addRole(role.id)
+        .then(message.channel.send('Dostałeś role **visual-basic**!'))
+        .catch(console.error)
+    }
+  }
+
 
   if (message.channel.type === 'dm') {
     message.reply(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
