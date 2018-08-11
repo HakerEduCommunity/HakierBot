@@ -11,7 +11,7 @@ function help(message) {
         text: 'Hakier bot by TakiDelfin and Kiritito',
       },
       thumbnail: {
-        url: 'https://cdn.discordapp.com/icons/302874462313906179/c0d68b69e26a9af15a63d0803d978529.webp',
+        url: 'https://assets.kogan.com/files/Sidebar/HelpCentre.png',
       },
       author: {
         name: 'Haker.edu.pl',
