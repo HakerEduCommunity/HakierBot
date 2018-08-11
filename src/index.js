@@ -2,14 +2,14 @@ const Discord = require('discord.js')
 const fs = require('fs')
 const config = require('./config')
 
-const bot = new Discord.Client({ disableEveryone: true })
+const client = new Discord.Client({ disableEveryone: true })
 
-bot.on('ready', () => {
+client.on('ready', () => {
   console.log(`\nInitialized on ${new Date().toUTCString()}.`)
-  bot.user.setPresence({ game: { name: 'Mr. Robot', type: 3 } })
+  client.user.setPresence({ game: { name: 'Mr. Robot', type: 3 } })
 })
 
-bot.on('guildMemberAdd', async (member) => {
+client.on('guildMemberAdd', async (member) => {
   const role = member.guild.roles.find('name', 'Użytkownik')
 
   await member.addRole(role)
@@ -18,7 +18,7 @@ bot.on('guildMemberAdd', async (member) => {
 })
 
 // commands handler
-bot.commands = new Discord.Collection()
+client.commands = new Discord.Collection()
 
 fs.readdir('./src/commands/', (err, files) => {
   if (err) console.error(err)
@@ -36,14 +36,14 @@ fs.readdir('./src/commands/', (err, files) => {
     const props = require(`./commands/${f}`)
     /* eslint-enable */
     console.log(`${f} loaded!`)
-    bot.commands.set(props.help.name, props)
+    client.commands.set(props.help.name, props)
   })
 })
 
-bot.on('message', async (message) => {
-  const command = message.content.slice(config.prefix.length)
+client.on('message', async (message) => {
+  const command = message.content.slice(config.prefix)
 
-  if (message.author.bot) return
+  if (message.author.client) return
   if (command === 'c++') {
     const role = message.guild.roles.find(r => r.name === 'c++')
     const giveRoleTo = message.guild.member(message.author)
@@ -183,11 +183,11 @@ bot.on('message', async (message) => {
   }
 
   const args = message.content.split(/\s+/g)
-  const cmd = bot.commands.get(args[1])
+  const cmd = client.commands.get(args[1])
 
   if (message.content.startsWith(config.prefix)) {
-    if (cmd) cmd.run(bot, message, args)
+    if (cmd) cmd.run(client, message, args)
     if (!cmd) return message.channel.send(':warning:  Error 404, komendy nie znaleziono! :warning:')
   }
 })
-bot.login(config.token)
+client.login(config.token)
