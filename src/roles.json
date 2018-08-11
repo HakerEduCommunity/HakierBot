@@ -56,19 +56,26 @@
             "icon_url": "https://cdn1.iconfinder.com/data/icons/system-shade-circles/512/java-512.png",
             "color": "15540260"
         },
-        "xd": {
-            "url": "",
-            "language": "",
-            "urlauthor": "",
-            "icon_url": "",
-            "color": ""
+        "lua": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Lua-logo-nolabel.svg/1024px-Lua-logo-nolabel.svg.png",
+            "language": "Lua",
+            "urlauthor": "https://www.lua.org/docs.html",
+            "icon_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Lua-logo-nolabel.svg/1024px-Lua-logo-nolabel.svg.png",
+            "color": "128"
         },
-        "xd1": {
-            "url": "",
-            "language": "",
-            "urlauthor": "",
-            "icon_url": "",
-            "color": ""
+        "html": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/HTML5_logo_resized.svg/170px-HTML5_logo_resized.svg.png",
+            "language": "HTML/CSS",
+            "urlauthor": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+            "icon_url": "http://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Other-html-5-icon.png",
+            "color": "14961958"
+        },
+        "visual-basic": {
+            "url": "https://i.imgur.com/rIFukEF.png",
+            "language": "Visual Basic",
+            "urlauthor": "https://docs.microsoft.com/en-us/dotnet/visual-basic/",
+            "icon_url": "https://i.imgur.com/rIFukEF.png",
+            "color": "5790642"
         }
     }
 }
