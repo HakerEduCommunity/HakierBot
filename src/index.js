@@ -88,7 +88,7 @@ client.on('message', async (message) => {
   if (command === 'golang') {
     roles(message)
   }
-  
+
   if (command === 'visual-basic') {
     roles(message)
   }
@@ -101,7 +101,8 @@ client.on('message', async (message) => {
     message.channel.send(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
   }
 
-  if (message.content.startsWith(config.prefix) && commands.includes(message.content.slice(1)) === false) {
+  if (message.content.startsWith(config.prefix)
+  && commands.includes(message.content.slice(1)) === false) {
     message.reply(':warning:  Error 404, komendy nie znaleziono! :warning:')
   }
 })
