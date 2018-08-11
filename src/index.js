@@ -41,9 +41,8 @@ fs.readdir('./src/commands/', (err, files) => {
 })
 
 client.on('message', async (message) => {
-  const command = message.content.slice(config.prefix)
+  const command = message.content.slice(config.prefix.length)
 
-  if (message.author.client) return
   if (command === 'c++') {
     const role = message.guild.roles.find(r => r.name === 'c++')
     const giveRoleTo = message.guild.member(message.author)
@@ -178,16 +177,15 @@ client.on('message', async (message) => {
 
 
   if (message.channel.type === 'dm') {
-    message.reply(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
-    return
+    message.channel.send(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
   }
 
   const args = message.content.split(/\s+/g)
   const cmd = client.commands.get(args[1])
+  const commands = ['js', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html', 'lua', 'c#', 'python']
 
-  if (message.content.startsWith(config.prefix)) {
-    if (cmd) cmd.run(client, message, args)
-    if (!cmd) return message.channel.send(':warning:  Error 404, komendy nie znaleziono! :warning:')
+  if (message.content.startsWith(config.prefix) && commands.includes(message.content.slice(1)) === false) {
+    message.reply(':warning:  Error 404, komendy nie znaleziono! :warning:')
   }
 })
 client.login(config.token)
