@@ -180,8 +180,7 @@ client.on('message', async (message) => {
     message.channel.send(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
   }
 
-  const args = message.content.split(/\s+/g)
-  const cmd = client.commands.get(args[1])
+  // checking commands
   const commands = ['js', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html', 'lua', 'c#', 'python']
 
   if (message.content.startsWith(config.prefix) && commands.includes(message.content.slice(1)) === false) {
