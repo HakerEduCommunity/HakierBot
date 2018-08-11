@@ -1,0 +1,74 @@
+{
+    "name": {
+        "javascript": {
+            "url": "https://webroad.pl/wp-content/uploads/2014/08/JavaScript-logo.png",
+            "language": "Java Script",
+            "urlauthor": "https://developer.mozilla.org/pl/docs/Web/JavaScript",
+            "icon_url": "https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png",
+            "color": "15784783"
+        },
+        "golang": {
+            "url": "https://www.spreadshirt.com/image-server/v1/mp/designs/1005862415,width=178,height=178/golang-gopher.png",
+            "language": "Golang",
+            "urlauthor": "https://golang.org/doc/",
+            "icon_url": "https://www.javatpoint.com/go/images/go-tutorial.jpg",
+            "color": "7002085"
+        },
+        "php": {
+            "url": "https://seeklogo.com/images/P/php-logo-ADE513E748-seeklogo.com.png",
+            "language": "PHP",
+            "urlauthor": "https://secure.php.net/docs.php",
+            "icon_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCe9QhviKL1fbKbGa9kGlleyYskymrOW2p1a64VEbJR7cy431x",
+            "color": "8950462"
+        },
+        "swift": {
+            "url": "https://img.deusm.com/informationweek/2015/09/1322066/Swift_logo.png",
+            "language": "Swift",
+            "urlauthor": "https://swift.org/documentation/",
+            "icon_url": "https://png.icons8.com/color/160/swift.png",
+            "color": "16723757"
+        },
+        "python": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2000px-Python-logo-notext.svg.png",
+            "language": "Python",
+            "urlauthor": "https://docs.python.org/3/",
+            "icon_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/2000px-Python.svg.png",
+            "color": "4950974"
+        },
+        "c++": {
+            "url": "https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png",
+            "language": "C++",
+            "urlauthor": "https://devdocs.io/cpp/",
+            "icon_url": "https://www.tutorjoes.com/videos/cpp.png",
+            "color": "22684"
+        },
+        "csharp": {
+            "url": "https://ih0.redbubble.net/image.416412087.0587/flat,550x550,075,f.jpg",
+            "language": "C#",
+            "urlauthor": "https://docs.microsoft.com/en-us/dotnet/csharp/",
+            "icon_url": "https://www.onlinebooksreview.com/uploads/blog_images/2018/01/27_c-sharp-logo-filled.png",
+            "color": "10054357"
+        },
+        "java": {
+            "url": "https://seeklogo.com/images/J/java-logo-41D4155FC3-seeklogo.com.png",
+            "language": "Java",
+            "urlauthor": "https://docs.oracle.com/javase/10/",
+            "icon_url": "https://cdn1.iconfinder.com/data/icons/system-shade-circles/512/java-512.png",
+            "color": "15540260"
+        },
+        "xd": {
+            "url": "",
+            "language": "",
+            "urlauthor": "",
+            "icon_url": "",
+            "color": ""
+        },
+        "xd1": {
+            "url": "",
+            "language": "",
+            "urlauthor": "",
+            "icon_url": "",
+            "color": ""
+        }
+    }
+}
