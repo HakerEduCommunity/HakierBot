@@ -103,7 +103,7 @@ client.on('message', async (message) => {
 
   if (message.content.startsWith(config.prefix)
   && commands.includes(message.content.slice(1)) === false) {
-    message.reply(':warning:  Error 404, komendy nie znaleziono! :warning:')
+    message.reply(`bash: ${command}: command not found`)
   }
 })
 client.login(config.token)
