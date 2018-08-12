@@ -13,7 +13,7 @@ const client = new Discord.Client({ disableEveryone: true })
 
 client.on('ready', () => {
   console.log(`\nInitialized on ${new Date().toUTCString()}.`)
-  client.user.setPresence({ game: { name: 'Mr. Robot', type: 3 } })
+  client.user.setPresence({ game: { name: client.users.size + ' programistów' , type: 3 } })
 })
 
 client.on('guildMemberAdd', async (member) => {
