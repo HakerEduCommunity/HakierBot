@@ -18,7 +18,7 @@ function js(message) {
     timestamp: '2018-08-11T13:35:04.860Z',
     footer: {
       icon_url: 'https://raw.githubusercontent.com/HakerEduCommunity/design-assets/master/assets/discord-thumbnail.png',
-      text: 'Hakier Bot by TakiDelfin and Kiritito',
+      text: 'Hakier Bot by takidelfin and Kiritito',
     },
     thumbnail: {
       url: rol.name[message.content.slice(1)].url,
