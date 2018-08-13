@@ -6,7 +6,7 @@ const help = require('./commands/help')
 const roles = require('./commands/roles')
 
 // variables
-const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html', 'lua', 'csharp', 'python', 'help']
+const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html', 'lua', 'c#', 'python', 'help']
 
 const client = new Discord.Client({ disableEveryone: true })
 
@@ -29,6 +29,14 @@ client.commands = new Discord.Collection()
 
 client.on('message', async (message) => {
   const command = message.content.slice(config.prefix.length)
+  
+  if(command === 'test') {
+    const role1 = client.guild.roles.find('name', 'Użytkownik')
+    let member
+    if (!role1) return message.channel.send(`**${message.author.username}**, role not found`);
+    message.guild.members.filter(m => !m.user.client).map(async member => await member.addRole(role1));
+    message.channel.send(`**${message.author.username}**, role **${role1.name}** was added to all members`);
+  }
 
   if (command === 'c++') {
     roles(message)
@@ -42,7 +50,7 @@ client.on('message', async (message) => {
     roles(message)
   }
 
-  if (command === 'csharp') {
+  if (command === 'c#') {
     roles(message)
   }
 
@@ -76,10 +84,6 @@ client.on('message', async (message) => {
 
   if (command === 'help') {
     help(message)
-  }
-
-  if (message.channel.type === 'dm') {
-    message.channel.send(':warning: Nie możesz używać komend w prywatnych wiadomościach!')
   }
 
   if (message.content.startsWith(config.prefix)
