@@ -27,24 +27,6 @@ client.on('guildMemberAdd', async (member) => {
 // commands handler
 client.commands = new Discord.Collection()
 
-fs.readdir('./src/commands/', (err, files) => {
-  if (err) console.error(err)
-
-  const jsfiles = files.filter(f => f.split('.').pop() === 'js')
-  if (jsfiles.lenght <= 0) {
-    console.log('No commands files found...')
-    return
-  }
-
-  console.log(`Loading ${jsfiles.length} commands... \n`)
-
-  jsfiles.forEach((f) => {
-    /* eslint-disable */
-    const props = require(`./commands/${f}`)
-    /* eslint-enable */
-    console.log(`${f} loaded!`)
-  })
-})
 
 client.on('message', async (message) => {
   const command = message.content.slice(config.prefix.length)
