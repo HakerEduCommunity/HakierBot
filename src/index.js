@@ -12,7 +12,7 @@ const client = new Discord.Client({ disableEveryone: true })
 
 client.on('ready', () => {
   console.log(`\nInitialized on ${new Date().toUTCString()}.`)
-  client.user.setPresence({ game: { name: client.users.size + ' programistów' , type: 3 } })
+  client.user.setPresence({ game: { name: 'Haker.edu.pl', type: 3 } });
 })
 
 client.on('guildMemberAdd', async (member) => {
@@ -28,61 +28,54 @@ client.commands = new Discord.Collection()
 
 
 client.on('message', async (message) => {
-  const command = message.content.slice(config.prefix.length)
-  
-  if(command === 'test') {
-    const role1 = client.guild.roles.find('name', 'Użytkownik')
-    let member
-    if (!role1) return message.channel.send(`**${message.author.username}**, role not found`);
-    message.guild.members.filter(m => !m.user.client).map(async member => await member.addRole(role1));
-    message.channel.send(`**${message.author.username}**, role **${role1.name}** was added to all members`);
-  }
+  // const command = message.content.startsWith(config.prefix)
 
-  if (command === 'c++') {
+
+  if (message.content.startsWith(config.prefix + 'c++')) {
     roles(message)
   }
 
-  if (command === 'javascript') {
+  if (message.content.startsWith(config.prefix + 'javascript')) {
     roles(message)
   }
 
-  if (command === 'python') {
+  if (message.content.startsWith(config.prefix + 'python')) {
     roles(message)
   }
 
-  if (command === 'c#') {
+  if (message.content.startsWith(config.prefix + 'c#')) {
     roles(message)
   }
 
-  if (command === 'lua') {
+  if (message.content.startsWith(config.prefix + 'lua')) {
     roles(message)
   }
 
-  if (command === 'html') {
+  if (message.content.startsWith(config.prefix + 'html')) {
     roles(message)
   }
 
-  if (command === 'java') {
+  if (message.content.startsWith(config.prefix + 'java')) {
     roles(message)
   }
 
-  if (command === 'php') {
+  if (message.content.startsWith(config.prefix + 'php')) {
     roles(message)
   }
 
-  if (command === 'swift') {
+  if (message.content.startsWith(config.prefix + 'swift')) {
     roles(message)
   }
 
-  if (command === 'golang') {
+  if (message.content.startsWith(config.prefix + 'golang')) {
     roles(message)
   }
 
-  if (command === 'visual-basic') {
+  if (message.content.startsWith(config.prefix + 'visual-basic')) {
     roles(message)
   }
 
-  if (command === 'help') {
+  if (message.content.startsWith(config.prefix + 'help')) {
     help(message)
   }
 
@@ -91,4 +84,5 @@ client.on('message', async (message) => {
     message.reply(`bash: ${command}: command not found`)
   }
 })
+
 client.login(config.token)
