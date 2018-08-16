@@ -7,7 +7,6 @@ const roles = require('./commands/roles')
 
 // variables
 const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html', 'lua', 'c#', 'python', 'help']
-
 const client = new Discord.Client({ disableEveryone: true })
 
 client.on('ready', () => {
@@ -29,59 +28,55 @@ client.commands = new Discord.Collection()
 
 client.on('message', async (message) => {
   // const command = message.content.startsWith(config.prefix)
+  const check = commands.includes(message.content.slice(1))
 
-
-  if (message.content.startsWith(config.prefix + 'c++')) {
+  if (message.content.startsWith(config.prefix + 'c++') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'javascript')) {
+  if (message.content.startsWith(config.prefix + 'python') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'python')) {
+  if (message.content.startsWith(config.prefix + 'c#') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'c#')) {
+  if (message.content.startsWith(config.prefix + 'lua') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'lua')) {
+  if (message.content.startsWith(config.prefix + 'html') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'html')) {
+  if (message.content.startsWith(config.prefix + 'java') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'java')) {
+  if (message.content.startsWith(config.prefix + 'php') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'php')) {
+  if (message.content.startsWith(config.prefix + 'swift') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'swift')) {
+  if (message.content.startsWith(config.prefix + 'golang') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'golang')) {
+  if (message.content.startsWith(config.prefix + 'visual-basic') && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'visual-basic')) {
-    roles(message)
-  }
-
-  if (message.content.startsWith(config.prefix + 'help')) {
+  if (message.content.startsWith(config.prefix + 'help') && check === true) {
     help(message)
   }
 
   if (message.content.startsWith(config.prefix)
   && commands.includes(message.content.slice(1)) === false) {
-    message.reply(`bash: ${command}: command not found`)
+    message.reply(`bash: ${message.content.slice(1)}: command not found`)
   }
 })
 
