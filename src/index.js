@@ -6,7 +6,7 @@ const help = require('./commands/help')
 const roles = require('./commands/roles')
 
 // variables
-const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html', 'lua', 'c#', 'python', 'help']
+const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html/css', 'lua', 'c#', 'python', 'help']
 const client = new Discord.Client({ disableEveryone: true })
 
 client.on('ready', () => {

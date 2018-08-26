@@ -63,7 +63,7 @@
             "icon_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Lua-logo-nolabel.svg/1024px-Lua-logo-nolabel.svg.png",
             "color": "128"
         },
-        "html": {
+        "html/css": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/HTML5_logo_resized.svg/170px-HTML5_logo_resized.svg.png",
             "language": "HTML/CSS",
             "urlauthor": "https://developer.mozilla.org/en-US/docs/Web/HTML",
