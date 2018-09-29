@@ -4,6 +4,7 @@ const config = require('./config')
 // commands import *coming soon*
 const help = require('./commands/help')
 const roles = require('./commands/roles')
+const virustotal = require('./commands/virustotal')
 
 // variables
 const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html/css', 'lua', 'c#', 'python', 'help']
@@ -27,6 +28,11 @@ client.commands = new Discord.Collection()
 
 
 client.on('message', async (message) => {
+  // Is File attachment (VirusTotal)
+  if (message.attachments.first(1).length > 0){
+    virustotal(message)
+  }
+
   // const command = message.content.startsWith(config.prefix)
   const check = commands.includes(message.content.slice(1))
 
