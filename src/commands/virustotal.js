@@ -1,4 +1,5 @@
-const VirusTotalToken = '995e4b11fcbe66a9c8bcbc9c6df5459f394bf2575999bb5d67c1929d2e13019f'
+const config = require('./config')
+const VirusTotalToken = config.virustotaltoken
 const request = require('request')
 const fs = require('fs')
 
