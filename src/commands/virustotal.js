@@ -16,7 +16,7 @@ function virustotal(message) {
     const regexExtension = (/[^.]{0,}$/gm);
     const extenstion = name.match(regexExtension)[0]
     if (!enableExtesnionToScan.includes(extenstion)){
-      console.log(`Tego pliku nie skanuj (${name})`)
+      // console.log(`Tego pliku nie skanuj (${name})`)
       return
     }
 
@@ -36,7 +36,7 @@ function virustotal(message) {
     download.on('response', (res) => {
       res.pipe(fs.createWriteStream(path))
       res.on('end', () => {
-        console.log(`Pobrano plik! (${name})`)
+        //console.log(`Pobrano plik! (${name})`)
 
         // Upload File to VirusTotal
         StatusMessage.then(sentMessage => sentMessage.edit("📬 Upload to VirusTotal..."));
@@ -75,8 +75,8 @@ function virustotal(message) {
                 try{
                   VTReportRespone = JSON.parse(body)
                 }catch (err) {
-                  console.log(console.error())
-                  console.log('Nie udało się pobarc raportu')
+                  // console.log(console.error())
+                  // console.log('Nie udało się pobarc raportu')
                   StatusMessage.then(sentMessage => sentMessage.edit(`❌ Error, You can manually check info about file here\n${VTRaportLink}`));
                   return
                 }
@@ -85,7 +85,7 @@ function virustotal(message) {
                 if (VTReportRespone.md5 === 'd41d8cd98f00b204e9800998ecf8427e') {
                   console.log('NULL FILE!')
                 } else if (VTReportRespone.response_code == -2) {
-                  console.log('wciaz sprawdzam')
+                  // console.log('wciaz sprawdzam')
                 } else if (VTReportRespone.response_code == 1) {
                   console.log(`Skanowanie Zakonczone (${name}) ${VTReportRespone.positives}/${VTReportRespone.total}`)
                   IsScanedSuccessfull = true
@@ -93,7 +93,7 @@ function virustotal(message) {
                   // Delete File
                   fs.unlink(path, (err) => {
                     if (err) throw err;
-                    console.log(`Plik usunieto (${name})`);
+                    // console.log(`Plik usunieto (${name})`);
                   });
                 } else {
                   console.log(body)
