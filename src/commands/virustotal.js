@@ -10,21 +10,37 @@ function virustotal(message) {
     console.log(downloadLink)
 
     const regex = /[^/]{0,}$/gm
-    const name = downloadLink.match(regex) // name of file
+    const name = downloadLink.match(regex)[0] // name of file
+
+    // check file extension
+    const enableExtesnionToScan = ['exe', 'zip', 'rar', '7zip']
+    const regexExtension = (/[^.]{0,}$/gm);
+    const extenstion = name.match(regexExtension)[0]
+    if (!enableExtesnionToScan.includes(extenstion)) {
+      console.log(`Tego pliku nie skanuj (${name})`)
+      return
+    }
+
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    let dirnamerand = ''
+    for (var i = 0; i < 8; i++) {
+      dirnamerand += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    const path = `${__dirname}/VirusTotalFiles/${dirnamerand}_${name}`
 
     // Download file to scan
-    StatusMessage.then(sentMessage => sentMessage.edit('Downloading...'))
+    StatusMessage.then(sentMessage => sentMessage.edit('📁 Downloading...'))
     const download = request.get(downloadLink)
     download.on('response', (res) => {
-      res.pipe(fs.createWriteStream(`${__dirname}/VirusTotalFiles/plik.exe`))
+      res.pipe(fs.createWriteStream(path))
       res.on('end', () => {
-        console.log('pobrano plik!')
+        console.log(`Pobrano plik! (${name})`)
 
         // Upload File to VirusTotal
-        StatusMessage.then(sentMessage => sentMessage.edit('Uploaded to VirusTotal...'))
+        StatusMessage.then(sentMessage => sentMessage.edit('📬 Upload to VirusTotal...'))
         const formData = {
           apikey: VirusTotalToken,
-          file: fs.createReadStream(`${__dirname}/VirusTotalFiles/plik.exe`),
+          file: fs.createReadStream(path),
         }
         request.post({ url: 'http://www.virustotal.com/vtapi/v2/file/scan', formData }, (err, httpResponse, body) => {
           if (err) {
@@ -38,10 +54,9 @@ function virustotal(message) {
           const VTRaportLink = JSON.parse(body).permalink
           console.log(VTRaportLink)
 
-
           // GET Raport about File from VirusTotal
-          StatusMessage.then(sentMessage => sentMessage.edit('Wait for Raport from VirusTotal...'))
-          const formData = {
+          StatusMessage.then(sentMessage => sentMessage.edit(`🔍 Wait for Raport from VirusTotal...\n${VTRaportLink}`))
+          const formDataRaport = {
             apikey: VirusTotalToken,
             resource: JSON.parse(body).resource,
           }
@@ -51,57 +66,64 @@ function virustotal(message) {
             if (IsScanedSuccessfull === false) {
               console.log('sprawdzam')
 
-              request.post({ url: 'https://www.virustotal.com/vtapi/v2/file/report', formData }, (err, _httpResponse, body) => {
+              request.post({ url: 'https://www.virustotal.com/vtapi/v2/file/report', formDataRaport }, (err, _httpResponse, body) => {
                 if (err) {
                   return console.error('Check Status failed:', err)
                 }
-                // console.log(body);
+                console.log(body);
+                let VTReportRespone
                 try {
-                  const VTReportRespone = JSON.parse(body)
-                  if (VTReportRespone.md5 === 'd41d8cd98f00b204e9800998ecf8427e') {
-                    console.log('NULL FILE!')
-                  } else if (VTReportRespone.response_code === -2) {
-                    console.log('wciaz sprawdzam')
-                  } else if (VTReportRespone.response_code === 1) {
-                    console.log('WYJDZ MAM TO CO CHCE')
-                    IsScanedSuccessfull = true
-                    console.log(`${VTReportRespone.positives}/${VTReportRespone.total}`)
-
-                    VTmessage(StatusMessage, VTRaportLink, VTReportRespone.positives, VTReportRespone.total)
-                  } else {
-                    console.log(body)
-                  }
-                } catch (err) {
-                  return console.log(err)
+                  VTReportRespone = JSON.parse(body)
+                }catch (err) {
+                  console.log(console.error())
+                  console.log('Nie udało się pobarc raportu')
+                  StatusMessage.then(sentMessage => sentMessage.edit(`❌ Error, You can manually check info about file here\n${VTRaportLink}`));
+                  return
+                }
+                
+                if (VTReportRespone.md5 === 'd41d8cd98f00b204e9800998ecf8427e') {
+                  console.log('NULL FILE!')
+                } else if (VTReportRespone.response_code === -2) {
+                  console.log('wciaz sprawdzam')
+                } else if (VTReportRespone.response_code === 1) {
+                  console.log(`Skanowanie Zakonczone (${name}) ${VTReportRespone.positives}/${VTReportRespone.total}`)
+                  IsScanedSuccessfull = true
+                  VTmessage(StatusMessage, VTRaportLink, VTReportRespone.positives, VTReportRespone.total)
+                  // Delete File
+                  fs.unlink(path, (err) => {
+                    if (err) throw err;
+                    console.log(`Plik usunieto (${name})`);
+                  });
+                } else {
+                  console.log(body)
                 }
               })
-              setTimeout(checkRaport, 5000)
+              setTimeout(checkRaport, 7000)
             }
-          })
+          })();
         })
       })
     })
 
     function VTmessage(tracker, link, positives, total) {
       const embed = {
-        title: `File scaned (${positives}/${total})`,
-        description: `[Link to Analysis](${link})`,
-        color: '22684',
-        timestamp: '2018-08-11T13:35:04.860Z',
+        title: 'Go to Analysis',
+        description: `Detection rate (**${positives}**/${total})`,
+        url: link,
+        color: 3891711,
+        timestamp: '2018-09-29T21:40:38.646Z',
         footer: {
           icon_url: 'https://raw.githubusercontent.com/HakerEduCommunity/design-assets/master/assets/discord-thumbnail.png',
           text: 'Hakier Bot by takidelfin and Kiritito',
         },
         thumbnail: {
-          url: 'https://static-dot-virustotalcloud.appspot.com/ui-public/images/thumbprint.png',
+          url: 'https://i.imgur.com/WLnclEQ.png',
         },
         author: {
           name: 'VirusTotal',
-          url: link,
-          icon_url: 'https://static-dot-virustotalcloud.appspot.com/ui-public/images/thumbprint.png',
+          icon_url: 'https://i.imgur.com/GIs1ABG.png',
         },
       }
-      // message.channel.send({ embed })
       tracker.then(sentMessage => sentMessage.edit({ embed }))
     }
   } catch (err) {
