@@ -4,7 +4,7 @@ const fs = require('fs')
 
 function virustotal(message) {
   try {
-    const StatusMessage = message.channel.send('Preparing...')
+    let StatusMessage
     const Attachment = (message.attachments).array()
     const downloadLink = Attachment[0].url // link to download file from discord
     console.log(downloadLink)
@@ -17,8 +17,11 @@ function virustotal(message) {
     const regexExtension = (/[^.]{0,}$/gm)
     const extenstion = name.match(regexExtension)[0]
     if (!enableExtesnionToScan.includes(extenstion)) {
-      console.log(`Tego pliku nie skanuj (${name})`)
-      return
+      return console.log(`Tego pliku nie skanuj (${name})`)
+    }
+
+    if (enableExtesnionToScan.includes(extenstion)) {
+      StatusMessage = message.channel.send('Preparing...')
     }
 
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -77,8 +80,7 @@ function virustotal(message) {
                 } catch (err) {
                   console.log(console.error())
                   console.log('Nie udało się pobarc raportu')
-                  StatusMessage.then(sentMessage => sentMessage.edit(`❌ Error, You can manually check info about file here\n${VTRaportLink}`))
-                  return
+                  return StatusMessage.then(sentMessage => sentMessage.edit(`❌ Error, You can manually check info about file here\n${VTRaportLink}`))
                 }
 
                 if (VTReportRespone.md5 === 'd41d8cd98f00b204e9800998ecf8427e') {
