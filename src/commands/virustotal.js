@@ -14,7 +14,7 @@ function virustotal(message) {
 
     // check file extension
     const enableExtesnionToScan = ['exe', 'zip', 'rar', '7zip']
-    const regexExtension = (/[^.]{0,}$/gm);
+    const regexExtension = (/[^.]{0,}$/gm)
     const extenstion = name.match(regexExtension)[0]
     if (!enableExtesnionToScan.includes(extenstion)) {
       console.log(`Tego pliku nie skanuj (${name})`)
@@ -23,7 +23,7 @@ function virustotal(message) {
 
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     let dirnamerand = ''
-    for (var i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
       dirnamerand += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     const path = `${__dirname}/VirusTotalFiles/${dirnamerand}_${name}`
@@ -70,17 +70,17 @@ function virustotal(message) {
                 if (err) {
                   return console.error('Check Status failed:', err)
                 }
-                console.log(body);
+                console.log(body)
                 let VTReportRespone
                 try {
                   VTReportRespone = JSON.parse(body)
-                }catch (err) {
+                } catch (err) {
                   console.log(console.error())
                   console.log('Nie udało się pobarc raportu')
-                  StatusMessage.then(sentMessage => sentMessage.edit(`❌ Error, You can manually check info about file here\n${VTRaportLink}`));
+                  StatusMessage.then(sentMessage => sentMessage.edit(`❌ Error, You can manually check info about file here\n${VTRaportLink}`))
                   return
                 }
-                
+
                 if (VTReportRespone.md5 === 'd41d8cd98f00b204e9800998ecf8427e') {
                   console.log('NULL FILE!')
                 } else if (VTReportRespone.response_code === -2) {
@@ -91,16 +91,16 @@ function virustotal(message) {
                   VTmessage(StatusMessage, VTRaportLink, VTReportRespone.positives, VTReportRespone.total)
                   // Delete File
                   fs.unlink(path, (err) => {
-                    if (err) throw err;
-                    console.log(`Plik usunieto (${name})`);
-                  });
+                    if (err) throw err
+                    console.log(`Plik usunieto (${name})`)
+                  })
                 } else {
                   console.log(body)
                 }
               })
               setTimeout(checkRaport, 7000)
             }
-          })();
+          }())
         })
       })
     })
