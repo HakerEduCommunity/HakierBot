@@ -1,4 +1,4 @@
-const config = require('./config')
+const config = require('../config')
 const VirusTotalToken = config.virustotaltoken
 const request = require('request')
 const fs = require('fs')
