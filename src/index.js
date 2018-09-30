@@ -12,7 +12,7 @@ const client = new Discord.Client({ disableEveryone: true })
 
 client.on('ready', () => {
   console.log(`\nInitialized on ${new Date().toUTCString()}.`)
-  client.user.setPresence({ game: { name: 'Haker.edu.pl', type: 3 } });
+  client.user.setPresence({ game: { name: 'Haker.edu.pl', type: 3 } })
 })
 
 client.on('guildMemberAdd', async (member) => {
@@ -29,54 +29,54 @@ client.commands = new Discord.Collection()
 
 client.on('message', async (message) => {
   // Is File attachment (VirusTotal)
-  if (message.attachments.first(1).length > 0){
+  if (message.attachments.first(1).length > 0) {
     virustotal(message)
   }
 
   // const command = message.content.startsWith(config.prefix)
   const check = commands.includes(message.content.slice(1))
 
-  if (message.content.startsWith(config.prefix + 'c++') && check === true) {
+  if (message.content.startsWith(`${config.prefix}c++`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'python') && check === true) {
+  if (message.content.startsWith(`${config.prefix}python`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'c#') && check === true) {
+  if (message.content.startsWith(`${config.prefix}c#`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'lua') && check === true) {
+  if (message.content.startsWith(`${config.prefix}lua`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'html') && check === true) {
+  if (message.content.startsWith(`${config.prefix}html`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'java') && check === true) {
+  if (message.content.startsWith(`${config.prefix}java`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'php') && check === true) {
+  if (message.content.startsWith(`${config.prefix}php`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'swift') && check === true) {
+  if (message.content.startsWith(`${config.prefix}swift`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'golang') && check === true) {
+  if (message.content.startsWith(`${config.prefix}golang`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'visual-basic') && check === true) {
+  if (message.content.startsWith(`${config.prefix}visual-basic`) && check === true) {
     roles(message)
   }
 
-  if (message.content.startsWith(config.prefix + 'help') && check === true) {
+  if (message.content.startsWith(`${config.prefix}help`) && check === true) {
     help(message)
   }
 
