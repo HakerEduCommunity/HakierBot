@@ -119,14 +119,14 @@ function VTmessage(tracker, link, positives, total) {
     "timestamp": "2018-09-29T21:40:38.646Z",
     "footer": {
       "icon_url": "https://raw.githubusercontent.com/HakerEduCommunity/design-assets/master/assets/discord-thumbnail.png",
-      "text": "Hakier Bot by takidelfin and Kiritito"
+      "text": "Hakier Bot by HakerEduPL Community"
     },
     "thumbnail": {
-      "url": "https://i.imgur.com/WLnclEQ.png"
+      "url": "https://static-dot-virustotalcloud.appspot.com/ui-public/images/thumbprint.png"
     },
     "author": {
       "name": "VirusTotal",
-      "icon_url": "https://i.imgur.com/GIs1ABG.png"
+      "icon_url": "https://static-dot-virustotalcloud.appspot.com/ui-public/images/thumbprint.png"
     }
   }
   tracker.then(sentMessage => sentMessage.edit({ embed }));
