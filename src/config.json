@@ -1,6 +1,7 @@
 {
     "token": "your_token_here",
     "prefix": "$",
+    "virustotaltoken": "SetTokenHere",
     "options": {
         "defaultKickMessage": "Bo mody majo racje",
         "defaultBanMessage": "A no. Mamy racje co do ciebie",

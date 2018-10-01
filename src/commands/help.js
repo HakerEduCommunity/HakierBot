@@ -7,7 +7,7 @@ function help(message) {
       timestamp: '2018-08-11T13:35:04.860Z',
       footer: {
         icon_url: 'https://raw.githubusercontent.com/HakerEduCommunity/design-assets/master/assets/discord-thumbnail.png',
-        text: 'Hakier bot by takidelfin and Kiritito',
+        text: 'Hakier Bot by HakerEduPL Community',
       },
       thumbnail: {
         url: 'https://assets.kogan.com/files/Sidebar/HelpCentre.png',
