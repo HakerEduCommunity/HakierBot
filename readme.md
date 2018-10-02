@@ -6,4 +6,9 @@ Or... if u want to test our dev builds, just [click](https://discord.gg/c6PqMP7)
 
 :construction: The content of `readme.md` is under construction. :construction: 
 
+```
+npm i
+node src/index.js
+```
+
 Made with :heart: by HakerEdu Community
