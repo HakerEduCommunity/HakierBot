@@ -13,7 +13,7 @@ npm install
 ```
 cd your_direction/HakierBot/src
 ```
-3. Start Bot
+3. Start Bot!
 ```
 node index.js
 ```
