@@ -4,11 +4,18 @@ Discord bot for HakerEduPL discord server.
 ##### [To test our bot, join HakerEduPL Discord server! ](https://discord.gg/8rtAfsV)
 Or... if u want to test our dev builds, just [click](https://discord.gg/c6PqMP7)
 
-:construction: The content of `readme.md` is under construction. :construction: 
-
+## How to run
+1. Install dependencies
 ```
-npm i
-node src/index.js
+npm install
+```
+2. How to enter to `/src/`
+```
+cd your_direction/HakierBot/src
+```
+3. Start Bot
+```
+node index.js
 ```
 
 Made with :heart: by HakerEdu Community
