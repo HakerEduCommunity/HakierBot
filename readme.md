@@ -5,7 +5,7 @@ Discord bot for HakerEduPL discord server.
 Or... if u want to test our dev builds, just [click](https://discord.gg/c6PqMP7)
 
 ## How to run
-1. Install dependencies
+1. Install dependencies.
 ```
 npm install
 ```
@@ -13,7 +13,7 @@ npm install
 ```
 cd your_direction/HakierBot/src
 ```
-3. Start Bot
+3. Start Bot!
 ```
 node index.js
 ```
