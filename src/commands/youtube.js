@@ -1,5 +1,5 @@
 const axios = require('axios')
-const apiKey = require('../../config/config')
+const apiKey = require('../../config/config.json')
 
 const sub = async (message) => {
     let ddd = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCxnQfWxR4Xp4Tv_dLh2Xvtw&key=${apiKey.youtubeApiKey}`)

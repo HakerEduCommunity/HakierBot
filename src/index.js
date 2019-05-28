@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const config = require('../config/config')
+const config = require('../config/config.json')
 
 // commands import *coming soon*
 const help = require('./commands/help')
