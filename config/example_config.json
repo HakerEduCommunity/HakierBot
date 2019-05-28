@@ -1,6 +1,7 @@
 {
     "token": "your_token_here",
     "prefix": "$",
+    "youtubeApiKey": "optional",
     "options": {
         "defaultKickMessage": "Bo mody majo racje",
         "defaultBanMessage": "A no. Mamy racje co do ciebie",
@@ -14,3 +15,4 @@
         "permissionRole": "Moderator"
     }
 }
+

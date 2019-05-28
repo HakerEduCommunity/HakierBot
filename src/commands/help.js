@@ -4,7 +4,7 @@ function help(message) {
       title: 'Hakier bot commands:',
       description: '**Prefix: $** \n\n**Available roles:**\n- $js\n- $c++\n- $python\n- $visual-basic\n- $java\n- $golang\n- $swift\n- $php\n- $html/css\n- $lua\n- $c#',
       color: 15605837,
-      timestamp: '2018-08-11T13:35:04.860Z',
+      timestamp: new Date(),
       footer: {
         icon_url: 'https://raw.githubusercontent.com/HakerEduCommunity/design-assets/master/assets/discord-thumbnail.png',
         text: 'Hakier Bot by HakerEduPL Community',

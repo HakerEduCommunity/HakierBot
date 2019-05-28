@@ -1,11 +1,12 @@
 const Discord = require('discord.js')
-const config = require('./config')
+const config = require('../config/config')
 
 // commands import *coming soon*
 const help = require('./commands/help')
 const roles = require('./commands/roles')
+const sub = require('./commands/youtube')
 // variables
-const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html/css', 'lua', 'c#', 'python', 'help']
+const commands = ['javascript', 'c++', 'visual-basic', 'golang', 'swift', 'java', 'php', 'html/css', 'lua', 'c#', 'python', 'help', 'yt']
 const client = new Discord.Client({ disableEveryone: true })
 
 client.on('ready', () => {
@@ -29,6 +30,10 @@ client.on('message', async (message) => {
 
   // const command = message.content.startsWith(config.prefix)
   const check = commands.includes(message.content.slice(1))
+  
+  if (message.content.startsWith(`${config.prefix}yt`) && check === true) {
+    sub(message)
+  }
 
   if (message.content.startsWith(`${config.prefix}c++`) && check === true) {
     roles(message)
