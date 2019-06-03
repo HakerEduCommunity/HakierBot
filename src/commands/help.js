@@ -2,7 +2,7 @@ function help(message) {
   try {
     const embed = {
       title: 'Hakier bot commands:',
-      description: '**Prefix: $** \n\n**Available roles:**\n- $js\n- $c++\n- $python\n- $visual-basic\n- $java\n- $golang\n- $swift\n- $php\n- $html/css\n- $lua\n- $c#',
+      description: '**Prefix: $** \n\n**Available roles:**\n- $js\n- $c++\n- $python\n- $visual-basic\n- $java\n- $golang\n- $swift\n- $php\n- $html/css\n- $lua\n- $c#\n- $yt',
       color: 15605837,
       timestamp: new Date(),
       footer: {
