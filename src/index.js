@@ -82,6 +82,7 @@ client.on('message', async (message) => {
   if (message.content.startsWith(config.prefix)
   && commands.includes(message.content.slice(1)) === false) {
     message.reply(`bash: ${message.content.slice(1)}: command not found`)
+      "bash: `" + message.content.slice(1) + "` : command not found"
   }
 })
 
